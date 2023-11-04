@@ -79,3 +79,35 @@
     {%- endfor -%}
     </div>
 {%-endif -%}
+
+<!--Notes category-->
+
+<!-- Notes Feed -->
+{%- if page.categories contains 'notes' -%}
+  {%- for note in site.notes %}
+    {%- if note.categories contains 'notes' -%}
+      <div class="note-feed-item">
+        <a href="{{ note.url | relative_url }}">
+          <h3>{{ note.title }}</h3>
+          <p>{{ note.excerpt }}</p>
+        </a>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<!-- Articles Feed -->
+{%- if page.categories contains 'articles' -%}
+  {%- for article in site.articles %}
+    {%- if article.categories contains 'articles' -%}
+      <div class="article-feed-item">
+        <a href="{{ article.url | relative_url }}">
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.excerpt }}</p>
+        </a>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+    
