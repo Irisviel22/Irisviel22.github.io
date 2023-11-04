@@ -6,6 +6,7 @@ format: list
 tags:
   - 读后感
   - 公众号
+category: article
 ---
 ![[Private/Attachment/unknown_filename.png]]
 
