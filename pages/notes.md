@@ -2,7 +2,7 @@
 layout: Post
 permalink: /notes
 feedformat: card
-title: Digital Garden
+title: 知识库
 category: note
 ---
 

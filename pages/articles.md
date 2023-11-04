@@ -1,7 +1,7 @@
 ---
 layout: Post
 permalink: /articles
-titel: Articles
+title: 文章
 feedformat: row
 category: article
 ---
