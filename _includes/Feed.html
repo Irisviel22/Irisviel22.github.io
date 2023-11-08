@@ -30,46 +30,40 @@
 {%- endcomment -%}
 
 <!--new code-->
-<!--将笔记按类型分类：note显示在知识库页面，且为卡片模式；article显示在文章页面，且为列表模式-->
-<!--暂时删除搜索功能。-->
-
-{% assign note_items = site.notes | sort: "date" | reverse %}
-
-{%- comment -%}
-
-{%- if site.preferences.search.enabled -%}
-    <!-- Search bar -->
-    <div class="block">
-        <input class="input is-medium" type="text" placeholder="Search..." id="search-input" autocomplete="off">
-        <div id="search-results" class="search-results"></div>
-    </div>
-    <script type="text/javascript" src="{{ site.baseurl }}/assets/js/vendor/lunr.min.js"></script>
-    <script src="{{ site.baseurl }}/assets/js/Search.js"></script>
-{%- endif -%}
-
-{%- endcomment -%}
+<!--将笔记按类型分类：note显示在知识库页面，且为卡片模式，并添加搜索框；article显示在文章页面，且为列表模式-->
 
 <!-- Card style feed for Notes -->
 {%- if page.feedformat == "card" -%}
+    {%- if site.preferences.search.enabled -%}
+    <!-- search bar -->
+        <div class="block">
+            <input class="input is-medium" type="text" placeholder="Search notes.." id="search-input" autocomplete="off">
+            <div id="search-results" class="search-results"></div>
+        </div>
+        <script type="text/javascript" src="{{ site.baseurl }}/assets/js/vendor/lunr.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/Search.js"></script>
+    {%- endif -%}
     <div class="related-wrapper">
-        {% for item in note_items %}
-            {%- if item.category == "note" -%}
-                <div class="notelist-feed">
-                    <a href="{{ site.baseurl }}{{ item.url }}">
-                        <h6>{{ item.title }}</h6>
-                        <p class="excerpt">
-                            {{ item.content | strip_html | strip | remove: "[[" | remove: "]]" | remove: "-" | escape | truncate: 100 }}
-                        </p>
-                    </a>
-                </div>
-            {%- endif -%}
-        {% endfor %}
+    {% assign note_items = site.notes | sort: "date" | reverse %}
+    {% for item in note_items %}
+        {%- if item.category == "note" -%}
+            <div class="notelist-feed">
+                <a href="{{ site.baseurl }}{{ item.url }}">
+                    <h6>{{ item.title }}</h6>
+                    <p class="excerpt">
+                        {{ item.content | strip_html | strip | remove: "[[" | remove: "]]" | remove: "-" | escape | truncate: 100 }}
+                    </p>
+                </a>
+            </div>
+        {%- endif -%}
+    {% endfor %}
     </div>
 {%- endif -%}
 
 <!-- Row style feed for Articles -->
 {%- if page.feedformat == "row" -%}
     <div class="block">
+        {% assign note_items = site.notes | sort: "date" | reverse %}
         {% for item in note_items %}
             {%- if item.category == "article" -%}
                 <div class="list-feed">

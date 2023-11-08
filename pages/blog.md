@@ -1,6 +1,6 @@
 ---
 layout: Post
-permalink: /articles
+permalink: /blog
 title: 文章
 feedformat: row
 category: article
