@@ -31,6 +31,7 @@
 
 <!--new code-->
 <!--将笔记按类型分类：note显示在知识库页面，且为卡片模式，并添加搜索框；article显示在文章页面，且为列表模式-->
+<!-- 重新修改笔记分类方式，直接利用本身的format进行分类，分为card和list，删除category这个文件属性 -->
 
 <!-- Card style feed for Notes -->
 {%- if page.feedformat == "card" -%}
@@ -46,7 +47,7 @@
     <div class="related-wrapper">
     {% assign note_items = site.notes | sort: "date" | reverse %}
     {% for item in note_items %}
-        {%- if item.category == "note" -%}
+        {%- if item.format == "card" -%}
             <div class="notelist-feed">
                 <a href="{{ site.baseurl }}{{ item.url }}">
                     <h6>{{ item.title }}</h6>
@@ -55,7 +56,7 @@
                     </p>
                 </a>
             </div>
-        {%- endif -%}
+        <!-- {%- endif -%} -->
     {% endfor %}
     </div>
 {%- endif -%}
@@ -65,7 +66,7 @@
     <div class="block">
         {% assign note_items = site.notes | sort: "date" | reverse %}
         {% for item in note_items %}
-            {%- if item.category == "article" -%}
+            {%- if item.format == "list" -%}
                 <div class="list-feed">
                     <a href="{{ site.baseurl }}{{ item.url }}" style="text-decoration: none;display: flex;justify-content: space-between;flex-direction: row;width: 100%;">
                         <div class="writinglist-title">

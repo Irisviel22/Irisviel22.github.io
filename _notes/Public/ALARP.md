@@ -6,9 +6,6 @@ format: card
 tags:
   - SSI
   - M
-category: note
-aliases: 
-cssclasses:
 ---
 ALARP (**A**s **L**ow **A**s **R**easonably（合理的）**P**racticable（可行的），德语: Das Risiko so niedrig wie noch vernünftigerweise praktikabel zu halten.)是一种风险管理原则，表示在可接受的成本和实践范围内将[[风险]]降至最低，也是[[风险]]理论的目的。ALARP线将[[风险矩阵]]划分为三个区域：可接受风险区、ALARP区和不可接受风险区。
 
