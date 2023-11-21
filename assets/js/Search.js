@@ -85,48 +85,50 @@
         // ... construct each result's DOM and append to resultsFragment ...
         searchResults.appendChild(resultsFragment);
     }
+      
 
     // Initialize search functionality
     async function searchInit() {
         try {
             const dataUrl = "/SearchData.json";
             const docs = await getSearchData(dataUrl);
-
-            // Create the search index
-            const index = new FlexSearch({
-                tokenize: "forward",
+    
+            // 创建一个自定义的分词器，专门为中文设计
+            // 这里的例子是一个简单的分词器，它会移除所有 ASCII 字符
+            // 并将字符串分割成单个字符
+            // 注意：这可能不适用于所有情况，您可能需要一个更复杂的分词策略
+            const index = new FlexSearch.Index({
+                encode: str => str.replace(/[\x00-\x7F]/g, "").split(""),
                 doc: {
                     id: "id",
                     field: ["title", "content", "url"]
                 }
             });
-
-            index.add(docs);
-
+    
+            // 添加文档到索引中
+            index.add(docId, docContent);
+    
             const searchInput = document.getElementById('search-input');
-
-            // Event listener for input
+    
+            // 添加事件监听器到搜索输入框
             searchInput.addEventListener('input', () => {
-                // console.log('Input event triggered'); // 确认事件是否被触发
                 const input = searchInput.value;
-                // console.log('Current input:', input); // 显示当前输入的值
                 if (input === '') {
-                    // Hide search if input is empty
                     document.documentElement.classList.remove('search-active');
                 } else {
-                    // Show search otherwise
                     document.documentElement.classList.add('search-active');
-                    const results = index.search(input); // Perform search
-                    createSearchResults(docs, results); // Display results
+                    const results = index.search('query'); // 执行搜索
+                    createSearchResults(docs, results); // 显示结果
                 }
             });
-
-            // Other event listeners here...
-            
+    
         } catch (error) {
             console.error("Error initializing search: ", error);
         }
     }
+    
+    // 这里可以保留您原来的其他代码和事件处理逻辑
+    
 
     // Document ready
     sj.onReady(searchInit);
