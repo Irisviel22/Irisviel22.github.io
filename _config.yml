@@ -68,10 +68,7 @@ plugins:
 collections:
     notes:
       output: true
-      permalink: /notes/:title
-    blog:
-      output: true
-      permalink: /blog/:title
+      permalink: /notes/:name/
 
 
 markdown: kramdown
@@ -112,6 +109,11 @@ defaults:
 #
 exclude:
   - _notes/Private
+  - _notes/journals
+  - _notes/logseq
+  - _notes/pages/bok pages
+  - _notes/pages/brick pages
+  - _notes/pages/system files
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
