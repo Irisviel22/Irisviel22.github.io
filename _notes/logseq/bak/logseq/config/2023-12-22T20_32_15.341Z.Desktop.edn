@@ -292,7 +292,7 @@
  ;;  :journal?        false} ; Default value: false
 
  ;; Favorites to list on the left sidebar
- :favorites ["🏠 home" "000-📥inbox" "100-👷job-工作" "200-🧑‍🎓learning-学习" "300-🌈life-生活" "400-😝interest-兴趣" "🧱bricks-知识砖块" "🌲bok-知识树"]
+ :favorites ["🏠 home" "000-📥inbox" "🧱bricks-知识砖块" "🌲bok-知识树" "100-👷job-工作" "200-🧑‍🎓learning-学习" "300-🌈life-生活" "400-😝interest-兴趣"]
 
  ;; Set flashcards interval.
  ;; Expected value:
@@ -411,6 +411,4 @@
  ;;   - :triple-lowbar (default)
  ;;      ;use triple underscore `___` for slash `/` in page title
  ;;      ;use Percent-encoding for other invalid characters
- :file/name-format :triple-lowbar
- :journal/page-title-format "yyyy_MM_dd"
- :publishing/all-pages-public? false}
+ :file/name-format :triple-lowbar}
